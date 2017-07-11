@@ -3,8 +3,8 @@ class Hatch < Formula
 
   desc "Hatch.sh makes it easy to build products using Amazon Web Services"
   homepage "https://hatch.sh"
-  url "https://pypi.python.org/packages/50/ca/44a1b6b3c2046b087138bf2436643def109d711f1407262c034c13355a4a/hatch-cli-0.0.1b3.tar.gz"
-  sha256 "02c099e955e1db94bb662bf5727b2c0086b302ce840d8340460d1c7994157bf5"
+  url "https://pypi.python.org/packages/04/15/a60f8a9fda0cd4d261cd035e3988d43369b2779ff619da6fbcef8b707211/hatch-cli-0.0.1b5.tar.gz"
+  sha256 "124c4afa3c38482a4cd95684bef8a6cea74b9f1cf2aee1a770086cefe580bf9c"
 
   resource "backports_abc" do
     url "https://files.pythonhosted.org/packages/68/3c/1317a9113c377d1e33711ca8de1e80afbaf4a3c950dd0edfaf61f9bfe6d8/backports_abc-0.5.tar.gz"
@@ -87,11 +87,11 @@ class Hatch < Formula
   end
 
   def install
+    version = "0.0.1b5"
+
     virtualenv_install_with_resources
-
-    # Pip normalizes the version number to the following. We should probably just use their scheme.
-    version = "0.0.1b3"
     bin.install "/usr/local/Cellar/hatch/#{version}/libexec/bin/hatch" => "hatch"
-
+    bash_completion.install "#{buildpath}/etc/bash/hatch.sh"
+    zsh_completion.install "#{buildpath}/etc/zsh/_hatch" => "_hatch"
   end
 end
