@@ -1,10 +1,10 @@
 class Hatch < Formula
   include Language::Python::Virtualenv
 
-  desc "Hatch.sh makes it easy to build products using Amazon Web Services"
+  desc "Simple command line interface for managing your static websites on AWS"
   homepage "https://hatch.sh"
-  url "https://pypi.python.org/packages/04/15/a60f8a9fda0cd4d261cd035e3988d43369b2779ff619da6fbcef8b707211/hatch-cli-0.0.1b5.tar.gz"
-  sha256 "124c4afa3c38482a4cd95684bef8a6cea74b9f1cf2aee1a770086cefe580bf9c"
+  url "https://pypi.python.org/packages/0e/64/57f3d96fd58f7b16cb446d243c05b931b245879683f4c820fcf7d4f46ade/hatch-cli-1.0.1.tar.gz"
+  sha256 "707d17af7e5d3d34e3d23e2536c100254926fcffb8bcba4e57437d2502762c49"
 
   resource "backports_abc" do
     url "https://files.pythonhosted.org/packages/68/3c/1317a9113c377d1e33711ca8de1e80afbaf4a3c950dd0edfaf61f9bfe6d8/backports_abc-0.5.tar.gz"
@@ -46,11 +46,6 @@ class Hatch < Formula
     sha256 "51ecb45f0add83c806c68e4b06106f90db260585b25ef2abfcda0bd95c0132fd"
   end
 
-  resource "hatch-cli" do
-    url "https://files.pythonhosted.org/packages/ad/94/03b6032153a29179a34c059b643c46f222ebdf3dd8f6c3e70ee602f29b8e/hatch-cli-0.0.1b2.tar.gz"
-    sha256 "7fa8107516ea9421ec6edb786409ad7d097e1a08d322d922f54141d6f593ddd9"
-  end
-
   resource "jmespath" do
     url "https://files.pythonhosted.org/packages/e5/21/795b7549397735e911b032f255cff5fb0de58f96da794274660bca4f58ef/jmespath-0.9.3.tar.gz"
     sha256 "6a81d4c9aa62caf061cb517b4d9ad1dd300374cd4706997aff9cd6aedd61fc64"
@@ -87,10 +82,9 @@ class Hatch < Formula
   end
 
   def install
-    version = "0.0.1b5"
-
+    version = "1.0.1"
     virtualenv_install_with_resources
-    bin.install "/usr/local/Cellar/hatch/#{version}/libexec/bin/hatch" => "hatch"
+    bin.install "/usr/local/Cellar/hatch/#{version}/bin/hatch" => "hatch"
     bash_completion.install "#{buildpath}/etc/bash/hatch.sh"
     zsh_completion.install "#{buildpath}/etc/zsh/_hatch" => "_hatch"
   end
