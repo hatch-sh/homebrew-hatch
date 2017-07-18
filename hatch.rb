@@ -3,8 +3,8 @@ class Hatch < Formula
 
   desc "Simple command line interface for managing your static websites on AWS"
   homepage "https://hatch.sh"
-  url "https://pypi.python.org/packages/0e/64/57f3d96fd58f7b16cb446d243c05b931b245879683f4c820fcf7d4f46ade/hatch-cli-1.0.1.tar.gz"
-  sha256 "707d17af7e5d3d34e3d23e2536c100254926fcffb8bcba4e57437d2502762c49"
+  url "https://pypi.python.org/packages/79/59/6ee28d4959a173939e78a69bb217218f32d4d9112fb09d94cffd59feaa85/hatch-cli-1.0.2.tar.gz"
+  sha256 "bd818e18a8d537d9941ffe9a3345e0ec946e0dbe157bba03c3565ca23519c58d"
 
   resource "backports_abc" do
     url "https://files.pythonhosted.org/packages/68/3c/1317a9113c377d1e33711ca8de1e80afbaf4a3c950dd0edfaf61f9bfe6d8/backports_abc-0.5.tar.gz"
@@ -82,10 +82,13 @@ class Hatch < Formula
   end
 
   def install
-    version = "1.0.1"
     virtualenv_install_with_resources
-    bin.install "/usr/local/Cellar/hatch/#{version}/bin/hatch" => "hatch"
     bash_completion.install "#{buildpath}/etc/bash/hatch.sh"
     zsh_completion.install "#{buildpath}/etc/zsh/_hatch" => "_hatch"
   end
+
+  test do
+    system bin/"hatch", "-v"
+  end
+
 end
